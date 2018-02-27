@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{template "header"}}
+<title>Add Device</title>
+<style>
+    nav li a:hover:not(.devicesActive) {
+    background-color: #111;
+}
+
+nav .devicesActive {
+    background-color: rgb(133, 235, 135);
+        color: #111;
+        font-style: italic;
+        font-weight: bold;
+}
+</style>
+<body>
+
+<div id="devices">
+    <main>
+        <h1>Devices</h1>
+        <h2>Add new device</h2>
+        <form method="POST" action="/devices">
+            <div id="addDevice">
+            <input type="text" name="hostname" placeholder="Hostname">
+            <input type="text" name="ipAddress" placeholder="IP Address">
+            <input type="text" name="deviceType" placeholder="Device Type"><br>
+            </div>
+            <input type="submit" value="Add">
+        </form>
+        {{if . }}
+            <h3 style="color:rgb(201, 8, 8);">The 'hostname' or 'IP Address' you entered already exist in the Database!</h3>
+        {{end}}
+        <br>
+        <br>
+        <h2>Use the file upload to select a CSV file for bulk upload.</h2>
+        <form method="POST" action="/devices" enctype="multipart/form-data">
+            <div id="bulkUpload">
+            <input type="file" name="bulkFile" id="bulkFile">
+            </div>
+            <input type="submit" value="Upload file">
+        </form>
+        
+    </main>
+</div>
+
+</body>
+</html>
